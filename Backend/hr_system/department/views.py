@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Department, Employee, Role, Task, TaskAssignment
-from . serializers import DepartmentSerializers, RoleSerializers, EmployeeSerializers, TaskSerializer, TaskAssignmentSerializers
+from .models import Department, Employee, Role, Task, TaskAssignment, Review
+from . serializers import DepartmentSerializers, RoleSerializers, EmployeeSerializers, TaskSerializer, TaskAssignmentSerializers, ReviewSerializer
 from rest_framework import status
 
 
@@ -294,5 +294,16 @@ def delete_task(request, id):
         return Response("Task deleted successfully", status=status.HTTP_200_OK)
     except Task.DoesNotExist:
         return Response( "Task not found", status=status.HTTP_404_NOT_FOUND) 
+    
+
+# review 
+
+
+
+@api_view(['GET'])
+def show_Review(request):
+    reviews = Review.objects.all()
+    reviews = ReviewSerializer(reviews,many = True)
+    return Response(reviews.data) 
 
         

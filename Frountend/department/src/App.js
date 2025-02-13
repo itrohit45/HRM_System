@@ -27,6 +27,9 @@ import Task_Assignment from './components/Task_Assignment';
 import TaskContextProvider from './context/TaskContextProvider';
 import UpdateTask from './components/UpdateTask';
 import ShowTask from './components/ShowTask';
+import ShowReview from './components/ShowReview';
+import AddReview from './components/AddReview';
+import ReviewContextProvider from './context/ReviewContextProvider';
 
 
 
@@ -38,6 +41,7 @@ function App() {
       <RoleContextProvider> 
       <EmployeeContextProvider> 
       <TaskContextProvider>
+      <ReviewContextProvider>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -60,10 +64,13 @@ function App() {
         <Route path='/task-assigned' element={<Task_Assignment/>}></Route>
         <Route path='/task_update/:id' element={<UpdateTask/>}></Route>
         <Route path='/show_task' element={<ShowTask/>}></Route>
+        <Route path='show_review' element={<ShowReview/>}></Route>
+        <Route path='add_review' element={<AddReview/>}></Route>
         
         
       
       </Routes>
+      </ReviewContextProvider>
       </TaskContextProvider> 
       </EmployeeContextProvider> 
       </RoleContextProvider>

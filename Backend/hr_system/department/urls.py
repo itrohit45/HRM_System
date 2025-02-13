@@ -35,4 +35,6 @@ urlpatterns = [
 
     path('show',views.showTask,name='show'),
     path('delete_task/<int:id>/', views.delete_task, name='delete_task'),
+
+    path('show_review',views.show_Review,name='show_review'),
 ]

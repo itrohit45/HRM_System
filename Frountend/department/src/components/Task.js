@@ -25,7 +25,7 @@ function Task(){
             {localStorage.getItem('superuser') === 'true' && <Link to="/create_task" className="btn btn-primary" style={{ marginRight: '50px', marginLeft: '10px' }}>Create Task</Link>}
             {localStorage.getItem('superuser') === 'true' && <Link to="/task-assigned" className="btn btn-primary" style={{ marginRight: '50px' }}>Task Assignment</Link>}
             {localStorage.getItem('superuser') === 'true' && <Link to="/task" className="btn btn-primary" style={{ marginRight: '50px' }}>Leave Management</Link>}
-            {localStorage.getItem('superuser') === 'true' && <Link to="/task" className="btn btn-primary">Prformance Review</Link>}
+            {localStorage.getItem('superuser') === 'true' && <Link to="/show_review" className="btn btn-primary">Prformance Review</Link>}
             </div>
             <table style={{ 
     border: '1px solid #ccc', 

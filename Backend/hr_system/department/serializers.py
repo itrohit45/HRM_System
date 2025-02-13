@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from . models import Department, Role, Employee, Task, TaskAssignment
+from . models import Department, Role, Employee, Task, TaskAssignment, Review
 
 
 class DepartmentSerializers(serializers.ModelSerializer):
@@ -37,8 +37,20 @@ class TaskSerializer(serializers.ModelSerializer):
 class TaskAssignmentSerializers(serializers.ModelSerializer):
     class Meta:
         model = TaskAssignment
-        fields = '__all__'        
+        fields = '__all__'  
 
+
+             
+
+class ReviewSerializer(serializers.ModelSerializer):
+    employee_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Review
+        fields = '__all__' 
+
+    def get_employee_name(self, obj):
+        return f"{obj.employee.first_name} {obj.employee.last_name}"
         
 
 
