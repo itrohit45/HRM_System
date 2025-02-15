@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from . models import Department, Role, Employee, Task, TaskAssignment, Review
+from . models import Department, Role, Employee, Task, TaskAssignment, Review, Leave
 
 
 class DepartmentSerializers(serializers.ModelSerializer):
@@ -53,5 +53,8 @@ class ReviewSerializer(serializers.ModelSerializer):
         return f"{obj.employee.first_name} {obj.employee.last_name}"
         
 
-
+class LeaveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leave
+        fields = '__all__'
 

@@ -130,6 +130,37 @@ class Review(models.Model):
 
     def __str__(self):
         return self.review_title
+    
+
+
+
+
+class Leave(models.Model):
+    LEAVE_TYPES = [
+        ('SL', 'Sick Leave'),
+        ('CL', 'Casual Leave'),
+        ('PL', 'Paid Leave'),
+        ('LWP', 'Leave Without Pay'),
+    ]
+
+    STATUS_CHOICES = [
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+        ('pending', 'Pending'),
+    ]
+
+   
+    employeeid = models.ForeignKey('Employee', on_delete=models.CASCADE)  
+    leave_type = models.CharField(max_length=10, choices=LEAVE_TYPES)
+    reason = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    total_days = models.IntegerField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    approved_by = models.ForeignKey('Employee', on_delete=models.CASCADE, related_name='approved_leaves', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.employeeid.first_name} - {self.leave_type} ({self.start_date} to {self.end_date})"
 
 
 

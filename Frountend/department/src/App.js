@@ -30,6 +30,12 @@ import ShowTask from './components/ShowTask';
 import ShowReview from './components/ShowReview';
 import AddReview from './components/AddReview';
 import ReviewContextProvider from './context/ReviewContextProvider';
+import LeaveManagement from './components/LeaveManagement';
+import LeaveContextProvider from './context/LeaveConextProvider';
+import ApplyLeave from './components/ApplyLeave';
+
+
+
 
 
 
@@ -42,6 +48,7 @@ function App() {
       <EmployeeContextProvider> 
       <TaskContextProvider>
       <ReviewContextProvider>
+      <LeaveContextProvider>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -66,10 +73,16 @@ function App() {
         <Route path='/show_task' element={<ShowTask/>}></Route>
         <Route path='show_review' element={<ShowReview/>}></Route>
         <Route path='add_review' element={<AddReview/>}></Route>
+        <Route path='/leave' element={<LeaveManagement/>}></Route>
+        <Route path='/apply_leave' element={<ApplyLeave/>}></Route>
+        
+       
+        
         
         
       
       </Routes>
+      </LeaveContextProvider>
       </ReviewContextProvider>
       </TaskContextProvider> 
       </EmployeeContextProvider> 

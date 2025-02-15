@@ -3,9 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Department, Employee, Role, Task, TaskAssignment, Review
-from . serializers import DepartmentSerializers, RoleSerializers, EmployeeSerializers, TaskSerializer, TaskAssignmentSerializers, ReviewSerializer
+from .models import Department, Employee, Role, Task, TaskAssignment, Review, Leave
+from . serializers import DepartmentSerializers, RoleSerializers, EmployeeSerializers, TaskSerializer, TaskAssignmentSerializers, ReviewSerializer, LeaveSerializer
 from rest_framework import status
+from datetime import datetime
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 
 #department
@@ -219,7 +222,7 @@ def create_Task(request):
         return Response({'error': f'Missing required field: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
 
     except Exception as e:
-        # Catching other exceptions and returning a general error message
+        
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)  
     
 
@@ -306,4 +309,67 @@ def show_Review(request):
     reviews = ReviewSerializer(reviews,many = True)
     return Response(reviews.data) 
 
+
+@api_view(['POST'])
+def create_Review(request):
+    try:
+        print(request.data)
+        employee = Employee.objects.get(id=request.data['employee'])
+        Review.objects.create(
+            
+            review_title = request.data['review_title'],
+            employee = employee,
+            review_date = request.data['review_date'],
+            period = request.data['period'],
+            rating = request.data['rating'],
+            comment = request.data['comment']
+        )
         
+        return Response('Review Added Successfully')
+
+    except KeyError as e:
+        return Response({'error': f'Missing required field: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)  
+    
+    
+    
+
+
+
+
+# leave
+
+
+@api_view(['GET'])
+def show_Leave(request):
+    leaves = Leave.objects.all()
+    leaves = LeaveSerializer(leaves,many = True)
+    return Response(leaves.data)
+
+# @api_view(['POST'])
+# def apply_Leave(request):
+#     employee = Employee.objects.get(user=request.user)
+
+#     Leave.objects.create(
+#         employeeid=employee,
+#         leave_type=request.data['leave_type'],
+#         reason=request.data['reason_of_leave'],
+#         start_date=request.data['from'],
+#         end_date=request.data['to'],
+#         total_days=(datetime.strptime(request.data['to'], "%Y-%m-%d").date() - datetime.strptime(request.data['from'], "%Y-%m-%d").date()).days + 1
+#     )
+#     return Response('Leave Applied Successfully')
+
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])  # Ensures user is logged in
+# def get_logged_in_employee(request):
+#     try:
+#         employee = Employee.objects.get(user=request.user)  # Fetch employee from logged-in user
+#         return Response({"id": employee.id, "name": employee.first_name})
+#     except Employee.DoesNotExist:
+#         return Response({"error": "Employee not found"}, status=404)
+

@@ -37,4 +37,11 @@ urlpatterns = [
     path('delete_task/<int:id>/', views.delete_task, name='delete_task'),
 
     path('show_review',views.show_Review,name='show_review'),
+    path('add_review',views.create_Review,name='add_review'),
+
+
+
+    path('show_leave',views.show_Leave,name='show_leave'),
+    # path('apply_leave',views.apply_Leave,name='apply_leave'),
+    # path('get_logged_in_employee/', views.get_logged_in_employee, name='get_logged_in_employee'),
 ]

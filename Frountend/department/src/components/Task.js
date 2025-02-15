@@ -24,7 +24,7 @@ function Task(){
             <div><br/><br/>
             {localStorage.getItem('superuser') === 'true' && <Link to="/create_task" className="btn btn-primary" style={{ marginRight: '50px', marginLeft: '10px' }}>Create Task</Link>}
             {localStorage.getItem('superuser') === 'true' && <Link to="/task-assigned" className="btn btn-primary" style={{ marginRight: '50px' }}>Task Assignment</Link>}
-            {localStorage.getItem('superuser') === 'true' && <Link to="/task" className="btn btn-primary" style={{ marginRight: '50px' }}>Leave Management</Link>}
+            {localStorage.getItem('superuser') === 'true' && <Link to="/leave" className="btn btn-primary" style={{ marginRight: '50px' }}>Leave Management</Link>}
             {localStorage.getItem('superuser') === 'true' && <Link to="/show_review" className="btn btn-primary">Prformance Review</Link>}
             </div>
             <table style={{ 
@@ -36,19 +36,19 @@ function Task(){
 }}>
     <tr>
         <td style={{ border: '1px solid #ccc', padding: '8px 15px' }}>
-            <Link className="btn btn-link" to='/' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>Previous</Link>
+            <Link className="btn btn-link" to='/task' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>Previous</Link>
         </td>
         <td style={{ border: '1px solid #ccc', padding: '8px 15px' }}>
-            <Link className="btn btn-link" style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>1</Link>
+            <Link className="btn btn-link" to='/task-assigned' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>1</Link>
         </td>
         <td style={{ border: '1px solid #ccc', padding: '8px 15px' }}>
-            <Link className="btn btn-link" style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>2</Link>
+            <Link className="btn btn-link" to='/leave' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>2</Link>
         </td>
         <td style={{ border: '1px solid #ccc', padding: '8px 15px' }}>
-            <Link className="btn btn-link" style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>3</Link>
+            <Link className="btn btn-link" to='/show_review' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>3</Link>
         </td>
         <td style={{ border: '1px solid #ccc', padding: '8px 15px' }}>
-            <Link className="btn btn-link" style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>Next</Link>
+            <Link className="btn btn-link" to='/show_review' style={{ textDecoration: 'none', border: 'none', background: 'none', fontSize: '16px' }}>Next</Link>
         </td>
     </tr>
 </table>
